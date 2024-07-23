@@ -16,8 +16,5 @@ public class Player : MonoBehaviour
     {
         
     }
-    public static void Main()
-    {
-        Console.WriteLine("vlc");
-    }
+
 }
