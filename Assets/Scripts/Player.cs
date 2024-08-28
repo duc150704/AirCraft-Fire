@@ -1,19 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] protected Vector3 worldPositon;
-    [SerializeField] protected float speed = 0.3f;
+    [SerializeField] protected float speed;
+
+    [SerializeField] protected GameObject Bullet;
+    [SerializeField] protected GameObject Enermy;
+    public Transform shoottingPoint;
     private void Start()
     {
         
     }
     private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }   
     }
     private void FixedUpdate()
     {
@@ -23,6 +31,23 @@ public class Player : MonoBehaviour
         transform.position = newPos;
 
 
+
+
+    }
+    private void Shoot()
+    {
+        if(Bullet && shoottingPoint)
+        {
+            Instantiate(Bullet, shoottingPoint.position, Quaternion.Euler(0,0,90));
+        }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enermy"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 }
