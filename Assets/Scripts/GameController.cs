@@ -42,9 +42,9 @@ public class GameController : MonoBehaviour
         {
             GameObject SpawnedEnermy = Instantiate(enermy,spawnPos,Quaternion.identity);
 
-            if (SpawnedEnermy.transform.position.y < -6)
+            if (SpawnedEnermy)
             {
-                Destroy(SpawnedEnermy);
+                Destroy(SpawnedEnermy,4f);
             }
         }
     }
